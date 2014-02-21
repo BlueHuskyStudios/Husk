@@ -1,0 +1,76 @@
+/* Husk framework typography CSS - http://prog.BHStudios.org/husk
+ * Copyright Blue Husky Programming ©2013 GPLv3
+ */
+
+/* WebFonts */
+/* TODO: Pare down to what's actually used */
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic|Roboto+Condensed:300italic,400italic,700italic,300,700,400|Roboto+Slab:400,100,300,700&subset=latin,cyrillic-ext,greek-ext,greek,vietnamese,latin-ext,cyrillic);
+
+:root,
+HTML,
+BODY {
+	font-family:
+		"Roboto",         /* Web */
+		"Segoe UI",       /* Windows */
+		"Helvetica Neue", /* OS X */
+		"Helvetica",      /* OS X */
+		"Arial",          /* Windows */
+		sans-serif;       /* Generic */
+}
+
+H1, H2, H3, H4, H5, H6 {
+	margin: 1em 0;
+}
+
+H1 {
+	border-bottom: thin solid currentColor;
+}
+H1,
+H2 {
+	font-family:
+		"Roboto Slab",      /* Web */
+		"Roboto Condensed", /* Web */
+		"Roboto",           /* Web */
+		"Segoe UI",         /* Windows */
+		"Helvetica Neue",   /* OS X */
+		"Helvetica",        /* OS X */
+		"Arial",            /* Windows */
+		sans-serif;         /* Generic */
+}
+H3,
+H4,
+H5,
+H6 {
+	font-family:
+		"Roboto Condensed", /* Web */
+		"Roboto Slab",      /* Web */
+		"Roboto",           /* Web */
+		"Segoe UI",         /* Windows */
+		"Helvetica Neue",   /* OS X */
+		"Helvetica",        /* OS X */
+		"Arial",            /* Windows */
+		sans-serif;         /* Generic */
+	padding: 0 1em;
+	margin: 1em 0;
+}
+H1, .row>* H1 { font-size: 3em;    font-weight: 100; }
+H2, .row>* H2 { font-size: 2.5em;  font-weight: 200; }
+H3, .row>* H3 { font-size: 2em;    font-weight: 300; }
+H4, .row>* H4 { font-size: 1.5em;  font-weight: 400; }
+H5, .row>* H5 { font-size: 1.3em;  font-weight: 500; }
+H6, .row>* H6 { font-size: 1.2em;  font-weight: 600; }
+
+.brand {
+	font-weight: 300;
+	font-family: 'Roboto Slab', fantasy, sans-serif;
+}
+.top-bar H1,
+.top-bar H2,
+.top-bar H3,
+.top-bar H4,
+.top-bar H5,
+.top-bar H6 {
+	text-align: center;
+}
+
+.big { font-size: 1.5em; }
