@@ -17,9 +17,8 @@
     display: -webkit-flex;
     display: flex;
 }
-	.noflex-small,
-	.noflex-small {
-		} @media (max-width: 639px) { .noflex-small, .noflex-small {
+	@media (max-width: 639px) {
+		.noflex-small {
 			display: block;
 			display: initial;
 		}

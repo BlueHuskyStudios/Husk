@@ -6,9 +6,12 @@
 /* TODO: Pare down to what's actually used */
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic|Roboto+Condensed:300italic,400italic,700italic,300,700,400|Roboto+Slab:400,100,300,700&subset=latin,cyrillic-ext,greek-ext,greek,vietnamese,latin-ext,cyrillic);
 
-:root,
-HTML,
-BODY {
+:root.husktype,
+HTML.husktype,
+BODY.husktype,
+.husktype :root,
+.husktype HTML,
+.husktype BODY {
 	font-family:
 		"Roboto",         /* Web */
 		"Segoe UI",       /* Windows */
@@ -18,15 +21,20 @@ BODY {
 		sans-serif;       /* Generic */
 }
 
-H1, H2, H3, H4, H5, H6 {
-	margin: 1em 0;
+.husktype H1,
+.husktype H2,
+.husktype H3,
+.husktype H4,
+.husktype H5,
+.husktype H6 {
+	margin: 1em 0 .5em;
 }
 
-H1 {
+.husktype H1 {
 	border-bottom: thin solid currentColor;
 }
-H1,
-H2 {
+.husktype H1,
+.husktype H2 {
 	font-family:
 		"Roboto Slab",      /* Web */
 		"Roboto Condensed", /* Web */
@@ -37,10 +45,10 @@ H2 {
 		"Arial",            /* Windows */
 		sans-serif;         /* Generic */
 }
-H3,
-H4,
-H5,
-H6 {
+.husktype H3,
+.husktype H4,
+.husktype H5,
+.husktype H6 {
 	font-family:
 		"Roboto Condensed", /* Web */
 		"Roboto Slab",      /* Web */
@@ -51,26 +59,75 @@ H6 {
 		"Arial",            /* Windows */
 		sans-serif;         /* Generic */
 	padding: 0 1em;
-	margin: 1em 0;
+	/*margin: 1em 0 .5em;*/
 }
-H1, .row>* H1 { font-size: 3em;    font-weight: 100; }
-H2, .row>* H2 { font-size: 2.5em;  font-weight: 200; }
-H3, .row>* H3 { font-size: 2em;    font-weight: 300; }
-H4, .row>* H4 { font-size: 1.5em;  font-weight: 400; }
-H5, .row>* H5 { font-size: 1.3em;  font-weight: 500; }
-H6, .row>* H6 { font-size: 1.2em;  font-weight: 600; }
+.husktype H1, .husktype .row>* H1 { font-size: 3em;    font-weight: 100; }
+.husktype H2, .husktype .row>* H2 { font-size: 2.5em;  font-weight: 200; }
+.husktype H3, .husktype .row>* H3 { font-size: 2em;    font-weight: 300; }
+.husktype H4, .husktype .row>* H4 { font-size: 1.5em;  font-weight: 400; }
+.husktype H5, .husktype .row>* H5 { font-size: 1.3em;  font-weight: 500; }
+.husktype H6, .husktype .row>* H6 { font-size: 1.2em;  font-weight: 600; }
 
-.brand {
+.husktype .brand {
 	font-weight: 300;
 	font-family: 'Roboto Slab', fantasy, sans-serif;
 }
-.top-bar H1,
-.top-bar H2,
-.top-bar H3,
-.top-bar H4,
-.top-bar H5,
-.top-bar H6 {
+.husktype .brand H1, .brand H1.husktype,
+.husktype .brand H2, .brand H2.husktype,
+.husktype .brand H3, .brand H3.husktype,
+.husktype .brand H4, .brand H4.husktype,
+.husktype .brand H5, .brand H5.husktype,
+.husktype .brand H6, .brand H6.husktype {
+	border-bottom: none;
+	margin: 0 1em;
 	text-align: center;
 }
 
-.big { font-size: 1.5em; }
+.husktype .big { font-size: 1.5em; }
+
+H1.plain,
+H2.plain,
+H3.plain,
+H4.plain,
+H5.plain,
+H6.plain {
+	border-bottom: none;
+	margin: 0;
+}
+
+dl.inline dt {
+  float: left;
+  clear: left;
+  margin-right: .2em;
+}
+	dl.inline dd {
+	  margin-left: 0px;
+	}
+
+.font-1qx { font-size: 25% !important; }
+.font-1hx,
+.font-2qx { font-size: 50% !important; }
+.font-3qx { font-size: 75% !important; }
+.font-1x  { font-size: 100% !important; }
+.font-2x  { font-size: 200% !important; }
+.font-3x  { font-size: 300% !important; }
+.font-4x  { font-size: 400% !important; }
+
+.font-smaller  { font-size: smaller  !important; }
+.font-xx-small { font-size: xx-small !important; }
+.font-x-small  { font-size: x-small  !important; }
+.font-small    { font-size: small    !important; }
+.font-medium   { font-size: medium   !important; }
+.font-large    { font-size: large    !important; }
+.font-x-large  { font-size: x-large  !important; }
+.font-xx-large { font-size: xx-large !important; }
+.font-larger   { font-size: larger   !important; }
+
+.font-ultra-light, .font-100 { font-weight: 100 !important; }
+.font-thin,        .font-200 { font-weight: 200 !important; }
+.font-light,       .font-300 { font-weight: 300 !important; }
+.font-roman, .font-medium,
+.font-normal,      .font-400 { font-weight: 400 !important; }
+.font-bold,        .font-500 { font-weight: 500 !important; }
+.font-heavy,       .font-600 { font-weight: 600 !important; }
+.font-black,       .font-700 { font-weight: 700 !important; }

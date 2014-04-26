@@ -1,9 +1,12 @@
+@import url('./demo-colors-code.css');
+
 :link,
 :visited {
 	color: #27B;
 }
 
-BODY>HEADER {
+BODY>HEADER,
+BODY>HEADER .dropdown {
 	background: #000;
 	color: #BBB;
 }
@@ -16,12 +19,17 @@ BODY>HEADER {
 	BODY>HEADER :visited:not(:hover):not(:focus) {
 		color: #BBB;
 	}
-		BODY>HEADER .dropdown MENU,
-		BODY>HEADER .dropdown OL,
-		BODY>HEADER .dropdown UL {
-			background: #000;
-			
-		}
+			BODY>HEADER NAV :link,
+			BODY>HEADER NAV :visited {
+				padding: 0.5em 1em;
+			}
+			BODY>HEADER .button:link:not(:hover):not(:focus),
+			BODY>HEADER .button:visited:not(:hover):not(:focus){
+				color: #FFF;
+			}
+	BODY>HEADER NAV{
+		margin: 0 1em;
+	}
 
 BODY>FOOTER {
 	background: #222;
@@ -109,14 +117,25 @@ MAIN {
 }
 
 P {
+	text-align: justify;
 	text-indent: .5in;
 }
+	P:not(.big) {
+		margin-bottom: .5em;
+	}
 	P.text-right, .text-right P,
 	P.text-end, .text-end P,
 	P.text-reverse, .text-reverse P,
 	P.text-center, .text-center P {
 		text-indent: 0;
 	}
+PRE {
+    background: rgba(110,120,130, .1);
+    border: thin dashed rgba(0, 0, 0, .1);
+    margin: 1em;
+    overflow: auto;
+    padding: 1em;
+}
 
 SMALL {
 	opacity: .8;
@@ -138,7 +157,7 @@ SUMMARY {
 .button.purple,    BUTTON.purple,    INPUT[type="button"].purple,    INPUT[type="submit"].purple,    INPUT[type="reset"].purple    { background-color: #72B; }
 .button.magenta,   BUTTON.magenta,   INPUT[type="button"].magenta,   INPUT[type="submit"].magenta,   INPUT[type="reset"].magenta   { background-color: #B27; }
 .button.orange,    BUTTON.orange,    INPUT[type="button"].orange,    INPUT[type="submit"].orange,    INPUT[type="reset"].orange    { background-color: #B72; }
-.button[disabled], BUTTON[disabled], INPUT[type="button"][disabled], INPUT[type="submit"][disabled], INPUT[type="reset"][disabled] { background-color: rgba(0,0,0, 0.5); background-image: none; /* color: #222; */ }
+.button[disabled], BUTTON[disabled], INPUT[type="button"][disabled], INPUT[type="submit"][disabled], INPUT[type="reset"][disabled] { background-color: rgba(0,0,0, 0.5); background-image: none; /* color: #222; */ cursor: auto; }
 
 
 
@@ -182,6 +201,39 @@ SUMMARY {
 		color: #FFF;
 		text-decoration: underline;
 	}
+.alert.warning {
+	background-color: #FFB;
+}
+	.alert.warning::before {
+		font-family: "FontAwesome";
+		content: "\f071"
+	}
+.close-button {
+    background: #27B;
+    color: #fff;
+    height: 1em;
+    line-height: 1em;
+    position: absolute;
+    right: 0px;
+    text-align: center;
+    text-decoration: none;
+    width: 1em;
+}
+
+*:hover>MENU[type="context"], *:focus>MENU[type="context"],
+.dropdown-holder:hover  .dropdown, .dropdown-holder:focus .dropdown {
+	box-shadow: 0 .5em 1em rgba(0,0,0, .2);
+}
+	.dropdown-holder MENU[type="context"],
+	.dropdown-holder MENU[type="context"] *,
+	.dropdown-holder .dropdown,
+	.dropdown-holder .dropdown * {
+		-webkit-transition-property: max-height, padding;
+		   -moz-transition-property: max-height, padding;
+			-ms-transition-property: max-height, padding;
+			 -o-transition-property: max-height, padding;
+				transition-property: max-height, padding;
+	}
 
 .hero {
 	background-color: #222;
@@ -191,6 +243,11 @@ SUMMARY {
 	border-radius: 1em;
 	color: #FFF;
 }
+
+.read-more::after {
+	content: "\00A0\00BB";
+}
+
 BLOCKQUOTE {
 	font-family: "Roboto Slab";
 	position: relative;
@@ -216,8 +273,31 @@ BLOCKQUOTE::after {
 	opacity: 0.5;
 }
 
+DL.inline DT {
+	font-weight: bold;
+	margin-right: none;
+}
+	DL.inline DT::after {
+		content: ": ";
+	}
+	DL DD {
+		margin-bottom: 1em;
+	}
+	DD UL,
+	DD OL {
+		margin-left: 2em;
+	}
+
+HR {
+	border-color: currentColor;
+	border-style: solid none none;
+	border-width: thin 0 0;
+	margin: .5em;
+	opacity: .1;
+}
+
 td {
-    background-color: rgba(127,127,127,0.5);
+    background-color: rgba(127,127,127, .5);
 }
 table {
     border-spacing: .25em;
@@ -237,6 +317,10 @@ td.warn {
 td.bad {
     background-color: transparent;
     color: #FBB;
+}
+UL,
+OL {
+	padding-left: 2em;
 }
 
 .help {
@@ -305,3 +389,7 @@ td.bad {
 		             0 0 .5em #777,
 		             0 0 .5em #777;
 	}
+
+.highlight-when-target:target {
+	outline: .2em solid #27B;
+}

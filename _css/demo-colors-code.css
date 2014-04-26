@@ -1,0 +1,19 @@
+.husk-code,
+.code-HTML .husk-code {
+	color: #27B;
+	font-weight: bold;
+}
+
+.code-HTML,
+.code-HTML * {
+	font-weight: inherit;
+}
+	.code-HTML .tag {
+		color: #BBB;
+	}
+		.code-HTML .tag .attr {
+			color: #FBB;
+		}
+			.code-HTML .tag .attr .val {
+				color: #BBF;
+			}
