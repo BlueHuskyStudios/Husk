@@ -1,9 +1,11 @@
 //var oldload = window.onload; // save the old onload scripts so we don't override them
 //window.onload =
 
-if (window.addEventListener)
+if (window.addEventListener) // standard
 	window.addEventListener ("load", huskLoadHandler, false);
-else
+else if (window.attachEvent) // IE
+	window.attachEvent('onload', huskLoadHandler);
+else // dunno, but might as well have it
 {
 	var oldload = window.onload;
 	window.onload = function()
@@ -19,28 +21,47 @@ function huskLoadHandler()
 	try{fixJSDisplays();}catch(e){console.log(e)}
 	try{fixySticky();}catch(e){console.log(e)}
 }
-	
 
 function fixySticky()
 {
+	$clones = [];
+	$elements = [];
 	$('.sticky-top').each(
 		function (index, element)
 		{
 			// element.dataset.name = 'sticky-top_' + tops.length;
-			element.dataset.top = $(element).position().top;
 			// if(!element.dataset.height) element.dataset.height = $(element).height();
 			// if(!element.dataset.width) element.dataset.width = $(element).width();
 			
-			$(element).after($(element).clone().addClass("sticky-clone").removeClass("stuck"));
+			$elements[index] = $(element);
+			$elements[index].data("top", $elements[index].offset().top);
 			
+			// keep a clone in the original position so the flow isn't changed, and to monitor size and offset
+			$clones[index] = $elements[index].clone().addClass("sticky-clone").removeClass("stuck");
+			$elements[index].after($clones[index]);
+			
+			$window = $(window);
 			var handler = function(event)
 			{
-				if ($(window).scrollTop() > element.dataset.top)
-					$(element).addClass("stuck");
+				if ($window.scrollTop() > $elements[index].data("top"))
+				{
+					$elements[index].addClass("stuck");
+					$elements[index].data("top", $clones[index].offset().top); // make sure the top didn't change
+					if ($window.scrollTop() <= $elements[index].data("top")) // if we were wrong
+						return handler(event); // go home and rethink our life
+					$elements[index].width($clones[index].width()); // make sure the width is proper
+					$elements[index].css("left", $clones[index].offset().left); // make sure the left offset is proper
+				}
 				else
-					$(element).removeClass("stuck");
+				{
+					$elements[index].removeClass("stuck");
+					$elements[index].width("");
+					$elements[index].css("left", "");
+					$elements[index].data("top", $elements[index].offset().top);
+				}
 			};
-			document.addEventListener ("scroll", handler, false);
+			$window.scroll(handler);
+			$window.resize(handler);
 			handler(); // now check in case the page is already scrolled past
 		}
 	);
@@ -56,7 +77,16 @@ function fixJSDisplays()
 	elements = document.getElementsByClassName('hide-when-js');
 	for(e = 0; e < elements.length; e++)
 	{
-		try{$(elements[e]).remove();}catch(e){console.log(e)}
+		try
+		{
+			$(elements[e]).remove(); // guaranteed to work
+		}
+		catch(ex)
+		{
+			console.log(ex);
+			if(elements[e])
+				elements[e].parentNode.removeChild(elements[e]); // should work, but not guaranteed
+		}
 	}
 	
 	$('.show-when-jquery').removeClass('show-when-jquery');
