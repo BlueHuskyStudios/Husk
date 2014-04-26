@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<HTML CLASS="animate-all">
+<?PHP include $_SERVER['DOCUMENT_ROOT'].'/prog/husk/_incl/huskMeta.php'; ?>
+<HTML CLASS="<?PHP echo getHTMLTagClasses(); ?>">
 <HEAD>
 <TITLE>Semantics &ndash; Features &ndash; Husk Framework</TITLE>
 <?PHP
