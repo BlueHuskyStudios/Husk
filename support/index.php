@@ -1,8 +1,10 @@
 <!DOCTYPE HTML>
 <?PHP include $_SERVER['DOCUMENT_ROOT'].'/prog/husk/_incl/huskMeta.php'; ?>
-<HTML>
+<HTML CLASS="<?PHP echo getHTMLTagClasses(); ?>">
 <HEAD>
 <TITLE>Support &ndash; Husk Framework</TITLE>
+<META NAME="description" CONTENT="Whta does Husk support? What supports Husk? Whichever way you look at it, this page should help." PROPERTY="og:description"/>
+<META NAME="keywords"    CONTENT="Blue Husky Studios,Blue Husky,Programming,Web,Framework,CSS,JS,Flex,Flexbox,12-Column,Browser,Support"/>
 <?PHP
 include $_SERVER['DOCUMENT_ROOT'].'/_incl/responsive-meta-tags.htm';
 include $_SERVER['DOCUMENT_ROOT'].'/prog/husk/_incl/meta-tags.htm';
@@ -20,22 +22,22 @@ include $_SERVER['DOCUMENT_ROOT'].'/prog/husk/_incl/js.htm';
 <MAIN>
 	<ARTICLE ID="GET" CLASS="row flush centered flex-row flex-wrap">
 		<SECTION CLASS="hero small-12 medium-8 large-5 text-center">
-			<P CLASS="big">Full support on all latest stable-release browsers on all post-2006 operating systems at release</P>
-			<A HREF="#BROWSERS" CLASS="blue button">Full browser support list</A>
+			<SPAN CLASS="big">Full support on all latest current browsers</SPAN>
+			<!--A HREF="#BROWSERS" CLASS="blue button">Full browser support list</A-->
 		</SECTION>
 	</ARTICLE>
 	
 	<ARTICLE ID="ABOUT" CLASS="row flex-row flex-horiz-center flex-wrap">
-		<SECTION ID="WARN" CLASS="tiny-12 large-6">
+		<SECTION ID="WARN" CLASS="medium-12 all-6">
 			<H2>Detect &amp; warn of an unsupported browser</H2>
 			<P>You can alert the user as to whether or not their browser is supported using the <CODE CLASS="css class">show-when-husk-supported</CODE> <SMALL>(<EM>only</EM> lets the element display when Husk is supported)</SMALL> and <CODE CLASS="css class">hide-when-husk-supported</CODE> <SMALL>(<EM>only</EM> lets the element display when Husk is <EM>not</EM> supported)</SMALL> classes.</P>
-			<PRE>
-<B CLASS="HTML-tag">&lt;ASIDE <B CLASS="HTML-attr">CLASS=<B CLASS="HTML-attr-val husk-code">"show-when-husk-supported"</B></B>&gt;</B>
-	&lt;STRONG&gt;Congratulations!&lt;/STRONG&gt; Your browser is supported!
-&lt;/ASIDE&gt;
-&lt;ASIDE CLASS="hide-when-husk-supported"&gt;
-	&lt;STRONG&gt;Warning!&lt;/STRONG&gt; Your browser is not supported. Please upgrade to &lt;A HREF="/husk/support"&gt;a supported browser&lt;/A&gt;.
-&lt;/ASIDE&gt;
+			<PRE CLASS="code-HTML">
+<B CLASS="tag">&lt;ASIDE <B CLASS="attr">CLASS=<B CLASS="val">"<B CLASS="husk-code">show-when-husk-supported</B>"</B></B>&gt;</B>
+	<B CLASS="tag">&lt;STRONG&gt;</B>Congratulations!<B CLASS="tag">&lt;/STRONG&gt;</B> Your browser is supported!
+<B CLASS="tag">&lt;/ASIDE&gt;</B>
+<B CLASS="tag">&lt;ASIDE <B CLASS="attr">CLASS=<B CLASS="val">"<B CLASS="husk-code">hide-when-husk-supported</B>"</B></B>&gt;</B>
+	<B CLASS="tag">&lt;STRONG&gt;</B>Warning!<B CLASS="tag">&lt;/STRONG&gt;</B> Your browser is not supported. Please upgrade to <B CLASS="tag">&lt;A <B CLASS="attr">HREF=<B CLASS="val">"/husk/support</B>"</B>&gt;</B>a supported browser<B CLASS="tag">&lt;/A&gt;</B>.
+<B CLASS="tag">&lt;/ASIDE&gt;</B>
 			</PRE>
 			
 			<H3>Output:</H3>
@@ -48,8 +50,10 @@ include $_SERVER['DOCUMENT_ROOT'].'/prog/husk/_incl/js.htm';
 		</SECTION>
 		
 		
-		<SECTION ID="BROWSERS" CLASS="tiny-12 large-6">
+		<SECTION ID="BROWSERS" CLASS="medium-12 all-6 highlight-when-target position-relative">
+			<A HREF="#" CLASS="close-button show-when-parent-target">x</A>
 			<H2>Supported browsers</H2>
+			<ASIDE>The following represent browsers we have tested Husk on. Older browsers might also offer partial or full support.</ASIDE>
 			<?PHP
 			class SupportRow
 			{
@@ -57,10 +61,10 @@ include $_SERVER['DOCUMENT_ROOT'].'/prog/husk/_incl/js.htm';
 				{
 					global $LATEST_VERS;
 					$LATEST_VERS = array(
-						'cr' => 32,
-						'ff' => 27,
+						'cr' => 34,
+						'ff' => 28,
 						'ie' => 11,
-						'op' => 18,
+						'op' => 20,
 						'sf' => 7
 					);
 					
@@ -119,7 +123,7 @@ include $_SERVER['DOCUMENT_ROOT'].'/prog/husk/_incl/js.htm';
 									? "$thisBrowser+"
 									:
 										($thisBrowser > $LATEST_VERS[$browser]
-											? "<SPAN CLASS='help display-block' DATA-TOOLTIP-TOP='This is a future version of the browser'>$thisBrowser+</SPAN>"
+											? "<SPAN CLASS='help display-block bh-tooltip-flip' DATA-TOOLTIP-TOP='This is a future version of the browser'>$thisBrowser+</SPAN>"
 											: 'Unsupported'
 										)
 								)
@@ -177,10 +181,16 @@ include $_SERVER['DOCUMENT_ROOT'].'/prog/husk/_incl/js.htm';
 				}
 			}
 			
+			
+			
+			
+			// !!!!!!!!!!!!!!!!! HERE IS WHERE THE CONTENT IS BUILT !!!!!!!!!!!!!!!!!
+			
 			$supportTable = new SupportTable(
 				array(//                                         CR  FF  IE  OPRA  S
 					new SupportRow('12-Column Grid',             26, 28, 11, 12.1, 7),
-					new SupportRow('HTML5 Details/Summary Shiv', 14, -1,  9, 19,   6)
+					new SupportRow('HTML5 Details/Summary Shiv', 14, 20,  9,   19, 6),
+					new SupportRow('Sticky Elements',            14,  4,  8,   10, 5.1)
 				)
 			);
 			$supportTable->build();
