@@ -4,7 +4,7 @@
 
 /* WebFonts */
 /* TODO: Pare down to what's actually used */
-@import url(http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic|Roboto+Condensed:300italic,400italic,700italic,300,700,400|Roboto+Slab:400,100,300,700&subset=latin,cyrillic-ext,greek-ext,greek,vietnamese,latin-ext,cyrillic);
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic|Roboto+Condensed:300italic,400italic,700italic,300,700,400|Roboto+Slab:400,100,300,700|Droid+Sans+Mono&subset=latin,cyrillic-ext,greek-ext,greek,vietnamese,latin-ext,cyrillic);
 
 :root.husktype,
 HTML.husktype,
@@ -21,20 +21,29 @@ BODY.husktype,
 		sans-serif;       /* Generic */
 }
 
-.husktype H1,
-.husktype H2,
-.husktype H3,
-.husktype H4,
-.husktype H5,
-.husktype H6 {
+.husktype H1, H1.husktype,
+.husktype H2, H2.husktype,
+.husktype H3, H3.husktype,
+.husktype H4, H4.husktype,
+.husktype H5, H5.husktype,
+.husktype H6, H6.husktype {
 	margin: 1em 0 .5em;
 }
 
-.husktype H1 {
+	.husktype H1:first-child, H1.husktype:first-child,
+	.husktype H2:first-child, H2.husktype:first-child,
+	.husktype H3:first-child, H3.husktype:first-child,
+	.husktype H4:first-child, H4.husktype:first-child,
+	.husktype H5:first-child, H5.husktype:first-child,
+	.husktype H6:first-child, H6.husktype:first-child {
+		margin-top: 0;
+	}
+
+.husktype H1, H1.husktype {
 	border-bottom: thin solid currentColor;
 }
-.husktype H1,
-.husktype H2 {
+.husktype H1, H1.husktype,
+.husktype H2, H2.husktype {
 	font-family:
 		"Roboto Slab",      /* Web */
 		"Roboto Condensed", /* Web */
@@ -45,10 +54,10 @@ BODY.husktype,
 		"Arial",            /* Windows */
 		sans-serif;         /* Generic */
 }
-.husktype H3,
-.husktype H4,
-.husktype H5,
-.husktype H6 {
+.husktype H3, H3.husktype,
+.husktype H4, H4.husktype,
+.husktype H5, H5.husktype,
+.husktype H6, H6.husktype {
 	font-family:
 		"Roboto Condensed", /* Web */
 		"Roboto Slab",      /* Web */
@@ -61,15 +70,16 @@ BODY.husktype,
 	padding: 0 1em;
 	/*margin: 1em 0 .5em;*/
 }
-.husktype H1, .husktype .row>* H1 { font-size: 3em;    font-weight: 100; }
-.husktype H2, .husktype .row>* H2 { font-size: 2.5em;  font-weight: 200; }
-.husktype H3, .husktype .row>* H3 { font-size: 2em;    font-weight: 300; }
-.husktype H4, .husktype .row>* H4 { font-size: 1.5em;  font-weight: 400; }
-.husktype H5, .husktype .row>* H5 { font-size: 1.3em;  font-weight: 500; }
-.husktype H6, .husktype .row>* H6 { font-size: 1.2em;  font-weight: 600; }
+.husktype H1, H1.husktype, .husktype .row>* H1 { font-size: 3em;    font-weight: 100; }
+.husktype H2, H2.husktype, .husktype .row>* H2 { font-size: 2.5em;  font-weight: 200; }
+.husktype H3, H3.husktype, .husktype .row>* H3 { font-size: 2em;    font-weight: 300; }
+.husktype H4, H4.husktype, .husktype .row>* H4 { font-size: 1.5em;  font-weight: 400; }
+.husktype H5, H5.husktype, .husktype .row>* H5 { font-size: 1.3em;  font-weight: 500; }
+.husktype H6, H6.husktype, .husktype .row>* H6 { font-size: 1.2em;  font-weight: 600; }
 
-.husktype .brand {
-	font-weight: 300;
+.husktype .brand,
+.husktype.brand {
+	font-weight: inherit;
 	font-family: 'Roboto Slab', fantasy, sans-serif;
 }
 .husktype .brand H1, .brand H1.husktype,
@@ -85,7 +95,7 @@ BODY.husktype,
 
 .husktype .big { font-size: 1.5em; }
 
-H1.plain,
+H1.plain, /* stopped developing to question whether this is resonable */
 H2.plain,
 H3.plain,
 H4.plain,
@@ -109,6 +119,10 @@ dl.inline dt {
 .font-2qx { font-size: 50% !important; }
 .font-3qx { font-size: 75% !important; }
 .font-1x  { font-size: 100% !important; }
+.font-1-1qx  { font-size: 125% !important; }
+.font-1-2qx,
+.font-1-1hx  { font-size: 150% !important; }
+.font-1-3qx  { font-size: 175% !important; }
 .font-2x  { font-size: 200% !important; }
 .font-3x  { font-size: 300% !important; }
 .font-4x  { font-size: 400% !important; }
@@ -131,3 +145,22 @@ dl.inline dt {
 .font-bold,        .font-500 { font-weight: 500 !important; }
 .font-heavy,       .font-600 { font-weight: 600 !important; }
 .font-black,       .font-700 { font-weight: 700 !important; }
+
+.text-uppercase { text-transform: UPPERCASE; }
+.text-lowercase { text-transform: lowercase; }
+.text-title,
+.text-capitalize { text-transform: capitalize; }
+
+.text-left,    .align-left    { text-align: left }
+.text-right,   .align-right   { text-align: right }
+.text-center,  .align-center  { text-align: center }
+.text-justify, .align-justify { text-align: justify }
+
+.husktype CODE, CODE.husktype,
+.husktype PRE,  PRE.husktype {
+	font-family:
+		"Droid Sans Mono", /* Web */
+		"Lucida Console",  /* Windows */
+		"Courier New"      /* Windows, OS X */
+		monospace;         /* Generic */
+}

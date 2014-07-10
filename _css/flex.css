@@ -17,11 +17,15 @@
     display: -webkit-flex;
     display: flex;
 }
-	@media (max-width: 639px) {
+	/*@media (max-width: 639px) {
 		.noflex-small {
 			display: block;
 			display: initial;
 		}
+	}*/
+	.flex-reverse {
+		-webkit-box-direction: reverse;
+		-moz-box-direction: reverse;
 	}
 	.flex-column {
 		-webkit-box-orient: vertical;
@@ -30,6 +34,11 @@
 		    -ms-flex-direction: column;
 		        flex-direction: column;
 	}
+		.flex-column.flex-reverse {
+			-webkit-flex-direction: column-reverse;
+			    -ms-flex-direction: column-reverse;
+			        flex-direction: column-reverse;
+		}
 	.flex-row {
 		-webkit-box-orient: horizontal;
 		   -moz-box-orient: horizontal;
@@ -37,6 +46,11 @@
 		    -ms-flex-direction: row;
 		        flex-direction: row;
 	}
+		.flex-row.flex-reverse {
+			-webkit-flex-direction: row-reverse;
+			    -ms-flex-direction: row-reverse;
+			        flex-direction: row-reverse;
+		}
 		.flex-row > *,
 		.flex-column > * {
 			order: 0;
