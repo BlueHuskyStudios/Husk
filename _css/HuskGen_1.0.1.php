@@ -1,14 +1,67 @@
-/* Husk framework 1.0.1 basic CSS - http://prog.BHStudios.org/husk
+<?PHP
+header("Content-type: text/css");                                    // Identify as a CSS file
+header('Content-Transfer-Encoding: binary');                         // Transfer this file as binary
+header('Expires: ' . date('D, j M Y H:i:s e', strtotime('+1 day'))); // This file expires one day from now
+header('Cache-Control: max-age=' . 60*60*24);                        // Recommend one-day cache. This should help with server load
+header('Pragma: public');                                            // Everyone can see this
+
+$cols = $_GET['cols'];
+if ($cols)
+	$cols = intval($cols);
+if (!$cols) // instead of else, in case intval returns a 0
+	$cols = 12;
+
+$smallMin = $_GET['smallMin'];
+if ($smallMin)
+	$smallMin = intval($smallMin);
+if (!$smallMin)
+	$smallMin = 480;
+
+$mediumMin = $_GET['mediumMin'];
+if ($mediumMin)
+	$mediumMin = intval($mediumMin);
+if (!$mediumMin)
+	$mediumMin = 768;
+
+$largeMin = $_GET['largeMin'];
+if ($largeMin)
+	$largeMin = intval($largeMin);
+if (!$largeMin)
+	$largeMin = 1024;
+
+$hugeMin = $_GET['hugeMin'];
+if ($hugeMin)
+	$hugeMin = intval($hugeMin);
+if (!$hugeMin)
+	$hugeMin = 1440;
+
+$tinyMax = $smallMin - 1;
+$smallMax = $mediumMin - 1;
+$mediumMax = $largeMin - 1;
+$largeMax = $hugeMin - 1;
+
+
+?>/* Husk framework 1.0.1 basic CSS - http://prog.BHStudios.org/husk
  * Copyright Blue Husky Programming ©2013 GPLv3
+ * Custom sheet ID: <?PHP
+
+echo base_convert("$cols", 10 , 64);
+echo base_convert("$smallMin", 10 , 64);
+echo base_convert("$mediumMin", 10 , 64);
+echo base_convert("$largeMin", 10 , 64);
+echo base_convert("$hugeMin", 10 , 64);
+
+?>
+
  * 
  * Requires that the browser has full CSS3 support.
  * 
  * Sizes are:
- * 		- Tiny: 0px - 479px
- * 		- Small: (480px) - 767px
- * 		- Medium: (768px) - 1023px
- * 		- Large: 1024px - (1439px)
- * 		- Huge: 1440px+
+ * 		- Tiny: 0px - <?PHP echo $tinyMax; ?>px
+ * 		- Small: (<?PHP echo $smallMin; ?>px) - <?PHP echo $smallMax; ?>px
+ * 		- Medium: (<?PHP echo $mediumMin; ?>px) - <?PHP echo $mediumMax; ?>px
+ * 		- Large: <?PHP echo $largeMin; ?>px - (<?PHP echo $largeMax; ?>px)
+ * 		- Huge: <?PHP echo $hugeMin; ?>px+
  * Middle sizes (Small, Medium, and Large) propagate down; when one is not set, but another is, it defaults to the largest set one.
  * Huge and tiny sizes are optional; if not set then large and small sizes (respectively) are used.
  */
@@ -51,7 +104,7 @@ INPUT[type="reset"].big {
 .hero {
 	margin: 1em;
 	padding: 3em;
-	} @media (max-width: 479px) { .hero {
+	} @media (max-width: <?PHP echo $tinyMax; ?>px) { .hero {
 		padding: 1em;
 	}
 }
@@ -85,7 +138,7 @@ INPUT[type="reset"].big {
 	-webkit-transition-duration: .25s;
 	-webkit-transition-timing-function: ease-in-out;
 }
-@media (max-width: 479px) { /* Tiny */
+@media (max-width: <?PHP echo $tinyMax; ?>px) { /* Tiny */
 	.animate-tiny *,
 	.animate-tiny *::before,
 	.animate-tiny *::after {
@@ -112,7 +165,7 @@ INPUT[type="reset"].big {
 		-webkit-transition-timing-function: ease-in-out;
 	}
 }
-@media (min-width: 480px) and (max-width: 767px) { /* Small */
+@media (min-width: <?PHP echo $smallMin; ?>px) and (max-width: <?PHP echo $smallMax; ?>px) { /* Small */
 	.animate-small *,
 	.animate-small *::before,
 	.animate-small *::after {
@@ -139,7 +192,7 @@ INPUT[type="reset"].big {
 		-webkit-transition-timing-function: ease-in-out;
 	}
 }
-@media (min-width: 768px) and (max-width: 1023px) { /* Medium */
+@media (min-width: <?PHP echo $mediumMin; ?>px) and (max-width: <?PHP echo $mediumMax; ?>px) { /* Medium */
 	.animate-medium *,
 	.animate-medium *::before,
 	.animate-medium *::after {
@@ -166,7 +219,7 @@ INPUT[type="reset"].big {
 		-webkit-transition-timing-function: ease-in-out;
 	}
 }
-@media (min-width: 1024px) and (max-width: 1439px) { /* Large */
+@media (min-width: <?PHP echo $largeMin; ?>px) and (max-width: <?PHP echo $largeMax; ?>px) { /* Large */
 	.animate-large *,
 	.animate-large *::before,
 	.animate-large *::after {
@@ -193,7 +246,7 @@ INPUT[type="reset"].big {
 		-webkit-transition-timing-function: ease-in-out;
 	}
 }
-@media (min-width: 1440px) { /* Huge */
+@media (min-width: <?PHP echo $hugeMin; ?>px) { /* Huge */
 	.animate-huge *,
 	.animate-huge *::before,
 	.animate-huge *::after {
@@ -225,7 +278,7 @@ INPUT[type="reset"].big {
 
 
 /************************* BEGIN Visibility Controls **************************/
-@media (max-width: 479px) { /* Tiny */
+@media (max-width: <?PHP echo $tinyMax; ?>px) { /* Tiny */
 	.hide-tiny,
 	.hide-small:not(.show-tiny),
 	.show-medium,
@@ -234,7 +287,7 @@ INPUT[type="reset"].big {
 		display: none;
 	}
 }
-@media (min-width: 480px) and (max-width: 767px) { /* Small */
+@media (min-width: <?PHP echo $smallMin; ?>px) and (max-width: <?PHP echo $smallMax; ?>px) { /* Small */
 	.show-tiny,
 	.hide-small,
 	.show-medium,
@@ -243,7 +296,7 @@ INPUT[type="reset"].big {
 		display: none;
 	}
 }
-@media (min-width: 768px) and (max-width: 1023px) { /* Medium */
+@media (min-width: <?PHP echo $mediumMin; ?>px) and (max-width: <?PHP echo $mediumMax; ?>px) { /* Medium */
 	.show-tiny,
 	.show-small,
 	.hide-medium,
@@ -252,7 +305,7 @@ INPUT[type="reset"].big {
 		display: none;
 	}
 }
-@media (min-width: 1024px) and (max-width: 1439px) { /* Large */
+@media (min-width: <?PHP echo $largeMin; ?>px) and (max-width: <?PHP echo $largeMax; ?>px) { /* Large */
 	.show-tiny,
 	.show-small,
 	.show-medium,
@@ -261,7 +314,7 @@ INPUT[type="reset"].big {
 		display: none;
 	}
 }
-@media (min-width: 1440px) { /* Huge */
+@media (min-width: <?PHP echo $hugeMin; ?>px) { /* Huge */
 	.show-tiny,
 	.show-small,
 	.show-medium,
@@ -338,57 +391,45 @@ INPUT[type="reset"].big {
 		vertical-align: top;
 		flex: 0 0 0;
 	}
-	.row>.all-1  { -webkit-flex-basis: calc((100% / 12)      - 1em - .01px); }
-	.row>.all-2  { -webkit-flex-basis: calc((100% / 12) * 2  - 1em - .01px); }
-	.row>.all-3  { -webkit-flex-basis: calc((100% / 12) * 3  - 1em - .01px); }
-	.row>.all-4  { -webkit-flex-basis: calc((100% / 12) * 4  - 1em - .01px); }
-	.row>.all-5  { -webkit-flex-basis: calc((100% / 12) * 5  - 1em - .01px); }
-	.row>.all-6  { -webkit-flex-basis: calc((100% / 12) * 6  - 1em - .01px); }
-	.row>.all-7  { -webkit-flex-basis: calc((100% / 12) * 7  - 1em - .01px); }
-	.row>.all-8  { -webkit-flex-basis: calc((100% / 12) * 8  - 1em - .01px); }
-	.row>.all-9  { -webkit-flex-basis: calc((100% / 12) * 9  - 1em - .01px); }
-	.row>.all-10 { -webkit-flex-basis: calc((100% / 12) * 10 - 1em - .01px); }
-	.row>.all-11 { -webkit-flex-basis: calc((100% / 12) * 11 - 1em - .01px); }
-	.row>.all-12 { -webkit-flex: none; }
-	.row>.all-1  { flex-basis: calc((100% / 12)      - 1em - .01px); /* This and subsequent calculations with ".01px" are to account for quarter-precision floating-point calculations */ width: calc((100% / 12)      - 1em - .01px); width: calc((100% / 12)      - 1em - .01px); /* Because IE doesn't apply border-box sizing to flex-basis */ }
-	.row>.all-2  { flex-basis: calc((100% / 12) * 2  - 1em - .01px); width: calc((100% / 12) * 2  - 1em - .01px); width: calc((100% / 12) * 2  - 1em - .01px); }
-	.row>.all-3  { flex-basis: calc((100% / 12) * 3  - 1em - .01px); width: calc((100% / 12) * 3  - 1em - .01px); }
-	.row>.all-4  { flex-basis: calc((100% / 12) * 4  - 1em - .01px); width: calc((100% / 12) * 4  - 1em - .01px); }
-	.row>.all-5  { flex-basis: calc((100% / 12) * 5  - 1em - .01px); width: calc((100% / 12) * 5  - 1em - .01px); }
-	.row>.all-6  { flex-basis: calc((100% / 12) * 6  - 1em - .01px); width: calc((100% / 12) * 6  - 1em - .01px); }
-	.row>.all-7  { flex-basis: calc((100% / 12) * 7  - 1em - .01px); width: calc((100% / 12) * 7  - 1em - .01px); }
-	.row>.all-8  { flex-basis: calc((100% / 12) * 8  - 1em - .01px); width: calc((100% / 12) * 8  - 1em - .01px); }
-	.row>.all-9  { flex-basis: calc((100% / 12) * 9  - 1em - .01px); width: calc((100% / 12) * 9  - 1em - .01px); }
-	.row>.all-10 { flex-basis: calc((100% / 12) * 10 - 1em - .01px); width: calc((100% / 12) * 10 - 1em - .01px); }
-	.row>.all-11 { flex-basis: calc((100% / 12) * 11 - 1em - .01px); width: calc((100% / 12) * 11 - 1em - .01px); }
-	.row>.all-12 { flex: none; display: block; width: calc(100% - 1em); }
+	/* This and subsequent calculations with ".01px" are to account for errors from browsers using quarter-precision floating-point calculations */
+	.row>.all-1	{ -webkit-flex-basis: calc((100% / <?PHP echo $cols; ?>)      - 1em - .01px);
+	           	          flex-basis: calc((100% / <?PHP echo $cols; ?>)      - 1em - .01px);
+	           	               width: calc((100% / <?PHP echo $cols; ?>)      - 1em - .01px); }<?PHP
 	
-	.row.flush>.all-1  { -webkit-flex-basis: calc((100% / 12)      - .01px); }
-	.row.flush>.all-2  { -webkit-flex-basis: calc((100% / 12) * 2  - .01px); }
-	.row.flush>.all-3  { -webkit-flex-basis: calc((100% / 12) * 3  - .01px); }
-	.row.flush>.all-4  { -webkit-flex-basis: calc((100% / 12) * 4  - .01px); }
-	.row.flush>.all-5  { -webkit-flex-basis: calc((100% / 12) * 5  - .01px); }
-	.row.flush>.all-6  { -webkit-flex-basis: calc((100% / 12) * 6  - .01px); }
-	.row.flush>.all-7  { -webkit-flex-basis: calc((100% / 12) * 7  - .01px); }
-	.row.flush>.all-8  { -webkit-flex-basis: calc((100% / 12) * 8  - .01px); }
-	.row.flush>.all-9  { -webkit-flex-basis: calc((100% / 12) * 9  - .01px); }
-	.row.flush>.all-10 { -webkit-flex-basis: calc((100% / 12) * 10 - .01px); }
-	.row.flush>.all-11 { -webkit-flex-basis: calc((100% / 12) * 11 - .01px); }
-	.row.flush>.all-12 { -webkit-flex: none; }
-	.row.flush>.all-1  { flex-basis: calc((100% / 12)      - .01px); width: calc((100% / 12)      - .01px); }
-	.row.flush>.all-2  { flex-basis: calc((100% / 12) * 2  - .01px); width: calc((100% / 12) * 2  - .01px); }
-	.row.flush>.all-3  { flex-basis: calc((100% / 12) * 3  - .01px); width: calc((100% / 12) * 3  - .01px); }
-	.row.flush>.all-4  { flex-basis: calc((100% / 12) * 4  - .01px); width: calc((100% / 12) * 4  - .01px); }
-	.row.flush>.all-5  { flex-basis: calc((100% / 12) * 5  - .01px); width: calc((100% / 12) * 5  - .01px); }
-	.row.flush>.all-6  { flex-basis: calc((100% / 12) * 6  - .01px); width: calc((100% / 12) * 6  - .01px); }
-	.row.flush>.all-7  { flex-basis: calc((100% / 12) * 7  - .01px); width: calc((100% / 12) * 7  - .01px); }
-	.row.flush>.all-8  { flex-basis: calc((100% / 12) * 8  - .01px); width: calc((100% / 12) * 8  - .01px); }
-	.row.flush>.all-9  { flex-basis: calc((100% / 12) * 9  - .01px); width: calc((100% / 12) * 9  - .01px); }
-	.row.flush>.all-10 { flex-basis: calc((100% / 12) * 10 - .01px); width: calc((100% / 12) * 10 - .01px); }
-	.row.flush>.all-11 { flex-basis: calc((100% / 12) * 11 - .01px); width: calc((100% / 12) * 11 - .01px); }
-	.row.flush>.all-12 { flex: none; display: block; width: calc(100% - .01px); }
 	
-	.row>.offset-all-1  { margin-left: calc((100% / 12)      + (.5em - .01px)) !important; }
+	
+	for($i = 2; $i < $cols; $i++)
+	{
+	?>
+
+	.row>.all-<?PHP echo $i; ?>	{ -webkit-flex-basis: calc((100% / <?PHP echo "$cols) * $i"; ?>  - 1em - .01px); 
+	           	          flex-basis: calc((100% / <?PHP echo "$cols) * $i"; ?>  - 1em - .01px);
+	           	               width: calc((100% / <?PHP echo "$cols) * $i"; ?>  - 1em - .01px); }<?PHP
+	}
+	
+	?>
+
+	.row>.all-<?PHP echo $cols; ?>	{ -webkit-flex: none; flex: none; display: block; width: calc(100% - 1em - .01px); }
+	
+	.row.flush>.all-1	{ -webkit-flex-basis: calc((100% / <?PHP echo $cols; ?>)      - .01px);
+	                 	          flex-basis: calc((100% / <?PHP echo $cols; ?>)      - .01px);
+	                 	               width: calc((100% / <?PHP echo $cols; ?>)      - .01px); }<?PHP
+	
+	
+	for($i = 2; $i < $cols; $i++)
+	{
+	?>
+
+	.row.flush>.all-<?PHP echo $i; ?>	{ -webkit-flex-basis: calc((100% / <?PHP echo "$cols) * $i"; ?>  - .01px);
+	                 	          flex-basis: calc((100% / <?PHP echo "$cols) * $i"; ?>  - .01px);
+	                 	               width: calc((100% / <?PHP echo "$cols) * $i"; ?>  - .01px); }<?PHP
+	}
+	
+	?>
+
+	.row.flush>.all-<?PHP echo $cols; ?> { -webkit-flex: none; flex: none; display: block; width: calc(100% - .01px); }
+	
+	.row>.offset-all-1  { margin-left: calc((100% / <?PHP echo $cols; ?>)      + (.5em - .01px)) !important; }
 	.row>.offset-all-2  { margin-left: calc((100% / 12) * 2  + (.5em - .01px)) !important; }
 	.row>.offset-all-3  { margin-left: calc((100% / 12) * 3  + (.5em - .01px)) !important; }
 	.row>.offset-all-4  { margin-left: calc((100% / 12) * 4  + (.5em - .01px)) !important; }
@@ -412,7 +453,7 @@ INPUT[type="reset"].big {
 	.row.flush>.offset-all-10 { margin-left: calc((100% / 12) * 10 - .01px) !important; }
 	.row.flush>.offset-all-11 { margin-left: calc((100% / 12) * 11 - .01px) !important; }
 	
-	@media (max-width: 1439px) { /* Large devices */
+	@media (max-width: <?PHP echo $largeMax; ?>px) { /* Large devices */
 		.row>.large-1  { -webkit-flex-basis: calc((100% / 12)      - 1em - .01px); }
 		.row>.large-2  { -webkit-flex-basis: calc((100% / 12) * 2  - 1em - .01px); }
 		.row>.large-3  { -webkit-flex-basis: calc((100% / 12) * 3  - 1em - .01px); }
@@ -491,7 +532,7 @@ INPUT[type="reset"].big {
 		
 		.hidden-large { display: none !important; }
 	}
-	@media (min-width: 1440px) { /* Huge devices */
+	@media (min-width: <?PHP echo $hugeMin; ?>px) { /* Huge devices */
 		/* "Huge" comes after "Large" to ensure its styles cascade properly */
 		.row>.huge-1 , .row>.large-1:not( [class^="huge-"]):not([class*=" huge-"]) { -webkit-flex-basis: calc((100% / 12)      - 1em - .01px); }
 		.row>.huge-2 , .row>.large-2:not( [class^="huge-"]):not([class*=" huge-"]) { -webkit-flex-basis: calc((100% / 12) * 2  - 1em - .01px); }
@@ -571,7 +612,7 @@ INPUT[type="reset"].big {
 		
 		.hidden-huge { display: none !important; }
 	}
-	@media (max-width: 1023px) { /* Medium devices */
+	@media (max-width: <?PHP echo $mediumMax; ?>px) { /* Medium devices */
 		.row>.medium-1  { -webkit-flex-basis: calc((100% / 12)      - 1em - .01px); }
 		.row>.medium-2  { -webkit-flex-basis: calc((100% / 12) * 2  - 1em - .01px); }
 		.row>.medium-3  { -webkit-flex-basis: calc((100% / 12) * 3  - 1em - .01px); }
@@ -650,7 +691,7 @@ INPUT[type="reset"].big {
 		
 		.hidden-medium { display: none !important; }
 	}
-	@media (max-width: 767px) { /* Small devices */
+	@media (max-width: <?PHP echo $smallMax; ?>px) { /* Small devices */
 		.row>.small-1  { -webkit-flex-basis: calc((100% / 12)      - 1em - .01px); }
 		.row>.small-2  { -webkit-flex-basis: calc((100% / 12) * 2  - 1em - .01px); }
 		.row>.small-3  { -webkit-flex-basis: calc((100% / 12) * 3  - 1em - .01px); }
@@ -729,7 +770,7 @@ INPUT[type="reset"].big {
 		
 		.hidden-small { display: none !important; }
 	}
-	@media (max-width: 479px) { /* Tiny devices */
+	@media (max-width: <?PHP echo $tinyMax; ?>px) { /* Tiny devices */
 		.row>.tiny-1  { -webkit-flex-basis: calc((100% / 12)      - 1em - .01px); }
 		.row>.tiny-2  { -webkit-flex-basis: calc((100% / 12) * 2  - 1em - .01px); }
 		.row>.tiny-3  { -webkit-flex-basis: calc((100% / 12) * 3  - 1em - .01px); }
@@ -812,11 +853,11 @@ INPUT[type="reset"].big {
 
 
 /*************************** BEGIN Aesthetic Sizing ***************************/
-.widest-tiny   { max-width:  479px; }
-.widest-small  { max-width:  767px; }
-.widest-medium { max-width: 1023px; }
-.widest-large  { max-width: 1439px; }
-.widest-huge   { max-width: 1440px; }
+.widest-tiny   { max-width:  <?PHP echo $tinyMax; ?>px; }
+.widest-small  { max-width:  <?PHP echo $smallMax; ?>px; }
+.widest-medium { max-width: <?PHP echo $mediumMax; ?>px; }
+.widest-large  { max-width: <?PHP echo $largeMax; ?>px; }
+.widest-huge   { max-width: <?PHP echo $hugeMin; ?>px; }
 
 IMG {
 	max-width: 100%;
@@ -824,7 +865,7 @@ IMG {
 MAIN.widest-huge {
 	margin-left: auto;
 	margin-right: auto;
-	} @media (max-width: calc(1440px - 1em)) { MAIN.widest-huge {
+	} @media (max-width: calc(<?PHP echo $hugeMin; ?>px - 1em)) { MAIN.widest-huge {
 		margin-left: 1em;
 		margin-right: 1em;
 	}
@@ -1042,7 +1083,7 @@ UL.horiz, UL.plain {
 
 
 
-@media (max-width: 479px) { /* Tiny */
+@media (max-width: <?PHP echo $tinyMax; ?>px) { /* Tiny */
 	.unstuck-tiny,
 	.unstuck-small:not(.stuck-tiny),
 	.stuck-medium,
@@ -1051,7 +1092,7 @@ UL.horiz, UL.plain {
 		position: static !important;
 	}
 }
-@media (min-width: 480px) and (max-width: 767px) { /* Small */
+@media (min-width: <?PHP echo $smallMin; ?>px) and (max-width: <?PHP echo $smallMax; ?>px) { /* Small */
 	.stuck-tiny,
 	.unstuck-small,
 	.stuck-medium,
@@ -1060,7 +1101,7 @@ UL.horiz, UL.plain {
 		position: static !important;
 	}
 }
-@media (min-width: 768px) and (max-width: 1023px) { /* Medium */
+@media (min-width: <?PHP echo $mediumMin; ?>px) and (max-width: <?PHP echo $mediumMax; ?>px) { /* Medium */
 	.stuck-tiny,
 	.stuck-small,
 	.unstuck-medium,
@@ -1069,7 +1110,7 @@ UL.horiz, UL.plain {
 		position: static !important;
 	}
 }
-@media (min-width: 1024px) and (max-width: 1439px) { /* Large */
+@media (min-width: <?PHP echo $largeMin; ?>px) and (max-width: <?PHP echo $largeMax; ?>px) { /* Large */
 	.stuck-tiny,
 	.stuck-small,
 	.stuck-medium,
@@ -1078,7 +1119,7 @@ UL.horiz, UL.plain {
 		position: static !important;
 	}
 }
-@media (min-width: 1440px) { /* Huge */
+@media (min-width: <?PHP echo $hugeMin; ?>px) { /* Huge */
 	.stuck-tiny,
 	.stuck-small,
 	.stuck-medium,
