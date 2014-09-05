@@ -62,7 +62,7 @@ $mediumMax = $largeMin - 1;
 $largeMax = $hugeMin - 1;
 
 
-?>/* Husk framework 1.1.0 basic CSS - http://prog.BHStudios.org/husk
+?>/* Husk framework 1.1.0l basic CSS - http://prog.BHStudios.org/husk
  * Copyright Blue Husky Programming ©2014 GPLv3
  * Custom sheet ID: <?PHP
 
@@ -586,28 +586,6 @@ MAIN.widest-huge {
 /**************************** END Aesthetic Sizing ****************************/
 
 
-/*************************** BEGIN.dropdown-holder Toolbar ***************************/
-.dropdown-holder,
-MENU[type="toolbar"].dropdown-holder,
-.toolbar.dropdown-holder {
-	position: relative;
-}
-		.dropdown-holder>MENU[type="context"],
-		.dropdown-holder>.dropdown {
-			overflow: hidden;
-			position: absolute;
-			right: 0;
-			top: 100%;
-			width: 100%;
-			z-index: 1000;
-		}
-			.dropdown-holder:not(:hover):not(:focus) MENU[type="context"]:not(:hover):not(:focus),
-			.dropdown-holder:not(:hover):not(:focus) .dropdown:not(:hover):not(:focus) {
-				max-height: 0%;
-			}
-/**************************** END.dropdown-holder Toolbar ****************************/
-
-
 
 .centered {
 	margin-left: auto;
@@ -622,38 +600,6 @@ MENU[type="toolbar"].dropdown-holder,
 		text-align: start; /* Obeys text-direction */
 	}
 
-.text-right,
-.row.centered>.text-right,
-.centered .row>.text-right {
-	text-align: right;
-}
-.text-left,
-.row.centered>.text-left,
-.centered .row>.text-left {
-	text-align: left;
-}
-.text-start,
-.text-native,
-.text-local {
-	text-align: left;
-	text-align: initial;
-	text-align: start; /* Obeys text-direction */
-}
-.text-end,
-.text-reverse {
-	text-align: right;
-	text-align: end;   /* Reverse of text-direction */
-}
-.text-center,
-.text-centered,
-.row.centered>.text-center,
-.centered .row>.text-center {
-	text-align: center;
-}
-
-.text-nowrap {
-	white-space: nowrap;
-}
 
 
 /******************************** BEGIN Lists *********************************/
@@ -775,7 +721,7 @@ UL.horiz, UL.plain {
 }
 	.sticky-top:not(.stuck)+.sticky-clone,
 	.sticky-bottom:not(.stuck)+.sticky-clone {
-		display: none;
+		display: none !important; /* made !important 2014-09-03 (1.0.1) by Kyli - since we made flexes important */
 	}
 
 
