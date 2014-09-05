@@ -4,4 +4,12 @@
 		color: black !important;
 		border-color: black !important;
 	}
+	.hide-print {
+		display: none !important;
+	}
+}
+@media not print {
+	.show-print {
+		display: none !important;
+	}
 }
